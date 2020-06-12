@@ -4,19 +4,44 @@ const tableData = data;
 // Reference the HTML table using d3
 var tbody = d3.select("tbody");
 
-// Create an empty table to put our data in
+
 function buildTable(data) {
+    // Create an empty table to put our data in
     tbody.html("");
+
+    //Loop through each object in the data & append a row and cells for each value in the row
+    data.forEach((dataRow) => {
+
+        // Append a row to the table body
+        let row = tbody.append("tr");
+
+        // Loop through each field in the dataRow and add each value as a table cell
+        Object.values(dataRow).forEach((val) => {
+            let cell = row.append("td");
+            cell.text(val);
+        });
+    });
+    
 }
 
-//Loop through each object in the data & append a row and cells for each value in the row
-data.forEach((dataRow)) => {
-    // Append a row to the table body
-    let row = tbody.apprend("tr");
+function handleClick() {
+    //Grab the datetime value from the filter
+    let data = d3.select("datetime").property("value");
+    let filteredData = tableData;
 
-    // Loop through each field in the dataRow and add each value as a table cell
-    Object.values(dataRow).forEach((val) => {
-        let cell = row.append("td");
-        cell.text(val);
-    )};
-}
+    // Check to see if a date was entered and filter the date using that date
+    if (date) {
+        // filter to the table data to only keep the rows where datetime vlaue matches the filter value
+        filteredData = filteredData.filter(row => row.datetime === date);
+    };
+
+    //Rebuild the table using the filtered data
+    buildTable(filteredData);
+
+};
+
+// Attach an event to listen for the form button
+d3.selectAll("#filter-btn").on("click", handleClick);
+
+// Build the table when the page loads
+buildTable(tableData);
