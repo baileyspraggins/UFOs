@@ -15,3 +15,4 @@ search by multiple factors instead of just date. The filters used are listed bel
 A recommendation I have for future development would be additional information related to each UFO sighting. In order to do this we would need an extra data JavaScript file that has detailed write ups pertaining to each of the sightings. We would use links in our index.html file to have the ability to click on a row and go to a new page to read more information about the specific sighting.
 
 ### Page Preview
+![](images/page_preview.png)
