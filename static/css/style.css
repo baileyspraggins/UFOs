@@ -8,3 +8,8 @@ body {
     background-size: 100% 100%;
     text-align: center;
   }
+
+  label  {
+
+    color: #000000;
+}
